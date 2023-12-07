@@ -1,0 +1,16 @@
+        let operation2 = DependencyOperation2()
+        operation2.completionBlock = {
+            print("result2", operation2.output ?? "")
+        }
+        operation2.addDependency(operation1)
+        operationQueue.addOperations([operation1, operation2], waitUntilFinished: false)
+        
+//        queue.asyncAfter(deadline: .now() + 1) {
+//            operation1.cancel()
+//        }
+    }
+}
+
+protocol Dependency {
+    var output: String? { get }
+}
